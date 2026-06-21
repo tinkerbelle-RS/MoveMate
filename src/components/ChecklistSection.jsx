@@ -22,7 +22,7 @@ export function ChecklistSection({ title, subtitle, items = [], sectionKey, onUp
           <span className="status-pill border-brand-200 bg-brand-50 text-brand-700">{doneCount}/{items.length} done</span>
         </div>
         <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
-          <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all" style={{ width: `${pct}%` }} />
+          <div className="h-full rounded-full bg-brand-600 transition-all" style={{ width: `${pct}%` }} />
         </div>
       </div>
 

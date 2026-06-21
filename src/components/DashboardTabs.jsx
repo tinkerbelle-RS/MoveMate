@@ -27,7 +27,7 @@ export default function DashboardTabs({ activeTab, onChange, variant = 'top' }) 
             onClick={() => onChange(id)}
             className={`${base} ${
               active
-                ? 'bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-sm'
+                ? 'bg-brand-700 text-white shadow-sm'
                 : variant === 'side'
                   ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-950'

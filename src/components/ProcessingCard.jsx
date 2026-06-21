@@ -11,7 +11,7 @@ export default function ProcessingCard({ fileName, progress = 0 }) {
   return (
     <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-sm">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-brand-700 text-white shadow-sm">
           <Loader2 className="h-8 w-8 animate-spin-slow" />
         </div>
         <div className="min-w-0 flex-1">
@@ -23,7 +23,7 @@ export default function ProcessingCard({ fileName, progress = 0 }) {
           </div>
 
           <div className="mt-6 h-2 overflow-hidden rounded-full bg-slate-100">
-            <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all duration-500" style={{ width: `${Math.min(progress, 100)}%` }} />
+            <div className="h-full rounded-full bg-brand-600 transition-all duration-500" style={{ width: `${Math.min(progress, 100)}%` }} />
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">

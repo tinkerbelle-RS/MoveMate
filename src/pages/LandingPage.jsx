@@ -25,10 +25,8 @@ function DashboardPreview() {
 
   return (
     <div className="relative">
-      <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-accent-200/60 blur-3xl" />
-      <div className="absolute -bottom-6 -left-6 h-28 w-28 rounded-full bg-brand-200/70 blur-3xl" />
       <div className="relative rounded-2xl border border-brand-100 bg-white/95 p-4 shadow-2xl shadow-brand-900/10">
-        <div className="rounded-xl bg-gradient-to-br from-brand-600 via-teal-500 to-accent-600 p-4 text-white">
+        <div className="rounded-xl bg-brand-700 p-4 text-white">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Lease Command Center</p>
@@ -43,12 +41,12 @@ function DashboardPreview() {
           </div>
         </div>
 
-        <div className="mt-4 rounded-xl border border-brand-100 bg-gradient-to-r from-brand-50 to-accent-50 p-4">
+        <div className="mt-4 rounded-xl border border-brand-100 bg-slate-50 p-4">
           <div className="flex items-center justify-between text-sm">
             <span className="font-semibold text-slate-950">Rental readiness</span>
             <span className="font-bold text-brand-700">67%</span>
           </div>
-          <div className="mt-3 h-2 rounded-full bg-white"><div className="h-2 w-2/3 rounded-full bg-gradient-to-r from-brand-500 to-accent-500" /></div>
+          <div className="mt-3 h-2 rounded-full bg-white"><div className="h-2 w-2/3 rounded-full bg-brand-600" /></div>
           <div className="mt-3 grid grid-cols-3 gap-2 text-[11px] font-semibold text-slate-600">
             {timeline.map((item) => <span key={item} className="rounded-md bg-white/80 px-2 py-1 text-center">{item}</span>)}
           </div>
@@ -176,7 +174,7 @@ export default function LandingPage() {
               <Lock className="h-3.5 w-3.5 text-emerald-600" />
               Student-first lease intelligence
             </div>
-            <h1 className="mt-6 max-w-3xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+            <h1 className="mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Turn a lease into a rental command center.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
@@ -232,7 +230,7 @@ export default function LandingPage() {
             ['04', 'Compare', 'Score leases against student priorities before choosing.'],
           ].map(([step, title, text]) => (
             <div key={title} className="gradient-card">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 text-xs font-bold text-white">{step}</span>
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-700 text-xs font-bold text-white">{step}</span>
               <p className="mt-4 text-sm font-semibold text-slate-950">{title}</p>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
             </div>

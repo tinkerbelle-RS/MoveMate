@@ -46,7 +46,7 @@ export default function DashboardPage() {
       <div className="mx-auto flex max-w-7xl gap-6 px-4 py-5 sm:px-6 lg:px-8">
         <aside className="no-print sticky top-5 hidden h-[calc(100vh-2.5rem)] w-72 shrink-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm lg:block">
           <Link to="/" className="flex items-center gap-3 rounded-xl px-2 py-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-600 text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-700 text-white">
               <Home className="h-5 w-5" />
             </div>
             <div>
@@ -90,29 +90,29 @@ export default function DashboardPage() {
           </div>
 
           <section className="no-print mb-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div className="border-b border-brand-100 bg-gradient-to-r from-brand-600 via-teal-500 to-accent-600 px-5 py-5 text-white sm:px-6">
+            <div className="border-b border-slate-200 bg-white px-5 py-5 sm:px-6">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Lease Command Center</p>
-                  <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{fileName}</h1>
-                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-white/80">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Lease Command Center</p>
+                  <h1 className="mt-2 break-words text-2xl font-semibold tracking-tight sm:text-3xl">{fileName}</h1>
+                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-600">
                     <span className="inline-flex items-center gap-1.5"><Calendar className="h-4 w-4" />Analyzed {formatDate(analyzedAt)}</span>
                     <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4" />Student-first summary, not legal advice</span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Link to="/" className="btn-secondary !border-white/25 !bg-white/15 !text-white hover:!bg-white/25">
+                  <Link to="/" className="btn-secondary">
                     <Upload className="h-4 w-4" />
                     New lease
                   </Link>
-                  <button type="button" onClick={() => setActiveTab('report')} className="btn-secondary !border-white/25 !bg-white !text-brand-800 hover:!bg-brand-50">
+                  <button type="button" onClick={() => setActiveTab('report')} className="btn-primary">
                     <Printer className="h-4 w-4" />
                     Report
                   </button>
                 </div>
               </div>
             </div>
-            <div className="grid gap-3 bg-gradient-to-r from-brand-50 via-white to-accent-50 px-5 py-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-3 bg-slate-50 px-5 py-4 sm:grid-cols-2 xl:grid-cols-4">
               {[
                 ['Risk level', risk.label],
                 ['Checklist progress', `${checklistStats.done}/${checklistStats.total} tasks`],
@@ -121,7 +121,7 @@ export default function DashboardPage() {
               ].map(([label, value]) => (
                 <div key={label} className="rounded-lg border border-white/80 bg-white/80 px-3 py-2 shadow-sm">
                   <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{label}</p>
-                  <p className="mt-1 truncate text-sm font-semibold text-slate-950">{value}</p>
+                  <p className="mt-1 break-words text-sm font-semibold leading-snug text-slate-950">{value}</p>
                 </div>
               ))}
             </div>

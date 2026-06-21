@@ -7,16 +7,16 @@ export default function GoalFitChart({ evaluation, priorityIds = [] }) {
   return (
     <div className="card">
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-        <div className="rounded-xl bg-gradient-to-br from-brand-600 via-teal-500 to-accent-700 p-6 text-white">
-          <div className="flex items-center gap-2 text-sm font-semibold text-white/80">
+        <div className="rounded-xl border border-brand-200 border-l-4 border-l-brand-600 bg-brand-50 p-6 text-slate-950">
+          <div className="flex items-center gap-2 text-sm font-semibold text-brand-700">
             <Award className="h-4 w-4" />
             Overall fit
           </div>
           <div className="mt-6 flex items-end gap-2">
             <p className="text-6xl font-semibold tracking-tight">{evaluation.overall_fit.toFixed(1)}</p>
-            <p className="pb-2 text-sm font-medium text-white/65">/ 5</p>
+            <p className="pb-2 text-sm font-medium text-slate-500">/ 5</p>
           </div>
-          <p className="mt-5 text-sm leading-relaxed text-white/80">{evaluation.headline}</p>
+          <p className="mt-5 text-sm leading-relaxed text-slate-600">{evaluation.headline}</p>
         </div>
 
         <div className="space-y-4">

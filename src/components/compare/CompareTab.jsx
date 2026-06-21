@@ -7,10 +7,10 @@ import GoalSelector from '../goals/GoalSelector';
 
 function LeaseCard({ eyebrow, fileName, analyzedAt, active }) {
   return (
-    <div className={`rounded-xl border p-5 ${active ? 'border-brand-400 bg-gradient-to-br from-brand-600 to-accent-600 text-white' : 'border-slate-200 bg-white text-slate-950'}`}>
-      <p className={`text-xs font-semibold uppercase tracking-wide ${active ? 'text-white/65' : 'text-slate-500'}`}>{eyebrow}</p>
+    <div className={`rounded-xl border p-5 ${active ? 'border-brand-300 bg-brand-50 text-slate-950' : 'border-slate-200 bg-white text-slate-950'}`}>
+      <p className={`text-xs font-semibold uppercase tracking-wide ${active ? 'text-brand-700' : 'text-slate-500'}`}>{eyebrow}</p>
       <p className="mt-2 truncate text-lg font-semibold">{fileName || 'Not uploaded yet'}</p>
-      <p className={`mt-1 text-sm ${active ? 'text-white/65' : 'text-slate-500'}`}>{analyzedAt ? `Analyzed ${new Date(analyzedAt).toLocaleDateString()}` : 'Upload or paste a second lease to compare.'}</p>
+      <p className={`mt-1 text-sm ${active ? 'text-brand-700' : 'text-slate-500'}`}>{analyzedAt ? `Analyzed ${new Date(analyzedAt).toLocaleDateString()}` : 'Upload or paste a second lease to compare.'}</p>
     </div>
   );
 }

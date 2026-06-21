@@ -48,7 +48,7 @@ export function ChecklistProgress({ checklists }) {
               <span className="text-slate-500">{section.done}/{section.total}</span>
             </div>
             <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full rounded-full bg-gradient-to-r from-brand-400 to-accent-400" style={{ width: `${section.pct}%` }} />
+              <div className="h-full rounded-full bg-brand-600" style={{ width: `${section.pct}%` }} />
             </div>
           </div>
         ))}
@@ -185,25 +185,25 @@ export function InsightSnapshot({ analysis, checklists }) {
       label: 'Risk to review',
       value: topRisk,
       icon: ShieldAlert,
-      className: 'border-amber-100 bg-gradient-to-br from-amber-50 to-white text-amber-950',
+      className: 'border-amber-100 bg-amber-50 text-amber-950',
     },
     {
       label: 'Next deadline',
       value: nextDeadline ? `${nextDeadline.label} · ${nextDeadline.formattedDate}` : 'No date-specific deadline found yet.',
       icon: CalendarDays,
-      className: 'border-brand-100 bg-gradient-to-br from-brand-50 to-white text-brand-950',
+      className: 'border-brand-100 bg-brand-50 text-brand-950',
     },
     {
       label: 'Checklist momentum',
       value: `${stats.done}/${stats.total} tasks complete (${stats.pct}%)`,
       icon: ListChecks,
-      className: 'border-accent-100 bg-gradient-to-br from-accent-50 to-white text-accent-950',
+      className: 'border-accent-100 bg-amber-50 text-accent-950',
     },
     {
       label: 'Renter history move',
       value: renterAction,
       icon: TrendingUp,
-      className: 'border-emerald-100 bg-gradient-to-br from-emerald-50 to-white text-emerald-950',
+      className: 'border-emerald-100 bg-emerald-50 text-emerald-950',
     },
   ];
 
@@ -225,7 +225,7 @@ export function InsightSnapshot({ analysis, checklists }) {
                 <Icon className="h-4 w-4" />
               </div>
             </div>
-            <p className="mt-3 line-clamp-3 text-sm font-semibold leading-relaxed">{value}</p>
+            <p className="mt-3 text-sm font-semibold leading-relaxed">{value}</p>
           </div>
         ))}
       </div>

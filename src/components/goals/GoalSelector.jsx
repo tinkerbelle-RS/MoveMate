@@ -34,7 +34,7 @@ export default function GoalSelector({ selected, onChange }) {
               onClick={() => toggle(goal.id)}
               className={`min-h-[150px] rounded-xl border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-brand-100 ${
                 isSelected
-                  ? 'border-brand-400 bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-md'
+                  ? 'border-brand-400 bg-brand-50 text-slate-950 shadow-sm'
                   : disabled
                     ? 'cursor-not-allowed border-slate-100 bg-slate-50 text-slate-400'
                     : 'border-slate-200 bg-white text-slate-800 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md'
@@ -46,7 +46,7 @@ export default function GoalSelector({ selected, onChange }) {
                 </span>
               </div>
               <span className="mt-4 block text-sm font-semibold">{goal.label}</span>
-              <span className={`mt-2 block text-xs leading-relaxed ${isSelected ? 'text-white/80' : 'text-slate-500'}`}>{goal.description}</span>
+              <span className={`mt-2 block text-xs leading-relaxed ${isSelected ? 'text-slate-600' : 'text-slate-500'}`}>{goal.description}</span>
             </button>
           );
         })}
