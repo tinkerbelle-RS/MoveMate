@@ -3,6 +3,21 @@ import { useLease } from '../context/LeaseContext';
 
 const resources = [
   {
+    title: 'UC Berkeley Student Legal Services',
+    url: 'https://sa.berkeley.edu/legal',
+    description: 'Campus legal support for Berkeley students, including housing questions.',
+  },
+  {
+    title: 'UC Berkeley Basic Needs Center',
+    url: 'https://basicneeds.berkeley.edu/',
+    description: 'Campus support for food, housing, financial, and stability needs.',
+  },
+  {
+    title: 'Berkeley Rent Board',
+    url: 'https://rentboard.berkeleyca.gov/',
+    description: 'Local tenant resources, rent stabilization information, and housing forms.',
+  },
+  {
     title: 'U.S. Dept. of Housing: Tenant Rights',
     url: 'https://www.hud.gov/topics/rental_assistance/tenants',
     description: 'Federal overview of tenant rights and fair housing.',
@@ -25,11 +40,11 @@ export default function HelpPage() {
             <Shield className="mt-0.5 h-6 w-6 shrink-0 text-brand-600" />
             <div>
               <h2 className="font-semibold text-slate-900">What MoveMate can do</h2>
-              <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                <li>• Extract and summarize key lease terms in plain language</li>
-                <li>• Flag clauses that look unusual or strict for student housing</li>
-                <li>• Generate move-in, during-lease, and move-out checklists</li>
-                <li>• Strip obvious personal info before AI analysis</li>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+                <li>Extract and summarize key lease terms in plain language</li>
+                <li>Flag clauses that look unusual or strict for student housing</li>
+                <li>Generate move-in, during-lease, and move-out checklists</li>
+                <li>Strip obvious personal info before AI analysis</li>
               </ul>
             </div>
           </div>
@@ -40,11 +55,11 @@ export default function HelpPage() {
             <AlertCircle className="mt-0.5 h-6 w-6 shrink-0 text-amber-600" />
             <div>
               <h2 className="font-semibold text-slate-900">What MoveMate cannot do</h2>
-              <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                <li>• Provide legal advice or tell you what to do in a dispute</li>
-                <li>• Guarantee accuracy. Always verify against your original lease.</li>
-                <li>• Replace a qualified attorney or tenant advocate</li>
-                <li>• Negotiate with your landlord on your behalf</li>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+                <li>Provide legal advice or tell you what to do in a dispute</li>
+                <li>Guarantee accuracy. Always verify against your original lease.</li>
+                <li>Replace a qualified attorney or tenant advocate</li>
+                <li>Negotiate with your landlord on your behalf</li>
               </ul>
             </div>
           </div>
