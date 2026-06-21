@@ -2,15 +2,25 @@ import dotenv from 'dotenv';
 dotenv.config({ override: true });
 import express from 'express';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { existsSync } from 'fs';
 import { analyzeLease } from './analyze.js';
 import { getAnthropicApiKey, isLiveAiEnabled } from './config.js';
 import { evaluateGoals, compareLeases } from './goals.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DIST = join(__dirname, '..', 'dist');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
+
+if (existsSync(DIST)) {
+  app.use(express.static(DIST));
+}
 
 app.get('/api/health', (_req, res) => {
   const live = isLiveAiEnabled();
@@ -90,6 +100,10 @@ app.post('/api/compare-leases', async (req, res) => {
     res.status(500).json({ error: err.message || 'Could not compare leases.' });
   }
 });
+
+if (existsSync(DIST)) {
+  app.get('*', (_req, res) => res.sendFile(join(DIST, 'index.html')));
+}
 
 app.listen(PORT, () => {
   const live = isLiveAiEnabled();
