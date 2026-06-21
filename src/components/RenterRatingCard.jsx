@@ -1,90 +1,50 @@
-import { Award, Circle } from 'lucide-react';
-import { getRenterRatingDisplay, NEUTRAL_TIER } from '../lib/renterRating';
+import { Award, Circle, TrendingUp } from 'lucide-react';
+import { getRenterRatingDisplay } from '../lib/renterRating';
 
 export default function RenterRatingCard({ analysis }) {
   const { label, summary, tips } = getRenterRatingDisplay(analysis);
-  const tier = NEUTRAL_TIER;
-  const ringCircumference = 2 * Math.PI * 15.5;
 
   return (
-    <div className={`card mb-6 border-2 ${tier.border} ${tier.bg}`}>
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center gap-5">
-          <div className="relative flex h-28 w-28 shrink-0 items-center justify-center">
-            <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 36 36">
-              <circle
-                cx="18"
-                cy="18"
-                r="15.5"
-                fill="none"
-                className={tier.ring}
-                strokeWidth="3"
-              />
-              <circle
-                cx="18"
-                cy="18"
-                r="15.5"
-                fill="none"
-                className={tier.ringActive}
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray={ringCircumference}
-                strokeDashoffset={ringCircumference}
-                opacity="0.35"
-              />
-            </svg>
-            <div className="text-center">
-              <p className="text-3xl font-light leading-none text-slate-400">—</p>
-              <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-400">
-                pending
-              </p>
-            </div>
+    <div className="card overflow-hidden p-0">
+      <div className="grid gap-0 lg:grid-cols-[320px_1fr]">
+        <div className="bg-gradient-to-br from-brand-600 via-teal-500 to-accent-700 p-6 text-white">
+          <div className="flex items-center gap-2 text-sm font-semibold text-white/80">
+            <Award className="h-4 w-4" />
+            Renter history
           </div>
-
-          <div>
-            <div className="flex items-center gap-2">
-              <Award className={`h-5 w-5 ${tier.text}`} />
-              <p className="text-sm font-medium text-slate-600">Renter History Score</p>
+          <p className="mt-6 text-3xl font-semibold tracking-tight">{label}</p>
+          <p className="mt-3 text-sm leading-relaxed text-white/80">{summary}</p>
+          <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-white/65">
+              <span>Start</span>
+              <span>Green path</span>
             </div>
-            <p className={`mt-1 text-xl font-bold ${tier.text}`}>{label}</p>
-            <p className="mt-1 max-w-md text-sm leading-relaxed text-slate-600">{summary}</p>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full w-1/4 rounded-full bg-emerald-400" />
+            </div>
           </div>
         </div>
 
-        <div className="lg:max-w-xs">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-            How scoring works
+        <div className="p-6">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-emerald-600" />
+            <h3 className="font-semibold text-slate-950">Path to a stronger renter record</h3>
+          </div>
+          {tips.length > 0 && (
+            <ul className="mt-4 grid gap-3 lg:grid-cols-2">
+              {tips.map((tip, i) => (
+                <li key={i} className="flex gap-2.5 rounded-lg border border-emerald-100 bg-emerald-50/60 p-3 text-sm leading-relaxed text-slate-700">
+                  <Circle className="mt-0.5 h-4 w-4 shrink-0 fill-emerald-100 stroke-emerald-500 stroke-[3]" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="mt-4 text-xs leading-relaxed text-slate-500">
+            Everyone starts with a clean slate. This is not a background check or legal rating, and it does not penalize you for lease wording.
           </p>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200">
-            <div className="h-full w-0 rounded-full bg-emerald-400 transition-all" />
-          </div>
-          <div className="mt-1 flex justify-between text-[10px] text-slate-500">
-            <span>Start here</span>
-            <span className="text-emerald-600">Green at 670+</span>
-          </div>
         </div>
       </div>
-
-      {tips.length > 0 && (
-        <div className="mt-5 border-t border-slate-200 pt-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            Path to a green score
-          </p>
-          <ul className="mt-2 space-y-2">
-            {tips.map((tip, i) => (
-              <li key={i} className="flex gap-2.5 text-sm text-slate-700">
-                <Circle className="mt-0.5 h-4 w-4 shrink-0 fill-emerald-100 stroke-emerald-500 stroke-[3]" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <p className="mt-4 text-xs text-slate-500">
-        Innocent until proven otherwise. We don&apos;t penalize you based on lease wording. Your
-        score builds from what you actually do as a tenant. Not a background check or legal rating.
-      </p>
     </div>
   );
 }

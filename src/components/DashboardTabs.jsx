@@ -1,28 +1,43 @@
-export default function DashboardTabs({ activeTab, onChange }) {
-  const tabs = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'goals', label: 'Lease fit for my life' },
-    { id: 'compare', label: 'Compare leases' },
-  ];
+import { BarChart3, FileText, GitCompare, HelpCircle, Target } from 'lucide-react';
+
+export const DASHBOARD_TABS = [
+  { id: 'overview', label: 'Overview', icon: BarChart3 },
+  { id: 'goals', label: 'Goals', icon: Target },
+  { id: 'compare', label: 'Compare', icon: GitCompare },
+  { id: 'report', label: 'Report', icon: FileText },
+  { id: 'help', label: 'Help', icon: HelpCircle },
+];
+
+export default function DashboardTabs({ activeTab, onChange, variant = 'top' }) {
+  const base = variant === 'side'
+    ? 'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition'
+    : 'inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition sm:text-sm';
 
   return (
-    <div className="mb-8 border-b border-slate-200">
-      <nav className="-mb-px flex gap-1 overflow-x-auto sm:gap-4" aria-label="Dashboard tabs">
-        {tabs.map((tab) => (
+    <nav
+      className={variant === 'side' ? 'space-y-1' : 'grid grid-cols-5 gap-1 rounded-xl border border-slate-200 bg-white p-1 shadow-sm'}
+      aria-label="Dashboard sections"
+    >
+      {DASHBOARD_TABS.map(({ id, label, icon: Icon }) => {
+        const active = activeTab === id;
+        return (
           <button
-            key={tab.id}
+            key={id}
             type="button"
-            onClick={() => onChange(tab.id)}
-            className={`shrink-0 border-b-2 px-3 py-3 text-sm font-medium transition sm:px-1 ${
-              activeTab === tab.id
-                ? 'border-brand-600 text-brand-600'
-                : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700'
+            onClick={() => onChange(id)}
+            className={`${base} ${
+              active
+                ? 'bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-sm'
+                : variant === 'side'
+                  ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+                  : 'text-slate-500 hover:bg-slate-50 hover:text-slate-950'
             }`}
           >
-            {tab.label}
+            <Icon className="h-4 w-4 shrink-0" />
+            <span className={variant === 'side' ? '' : 'truncate'}>{label}</span>
           </button>
-        ))}
-      </nav>
-    </div>
+        );
+      })}
+    </nav>
   );
 }

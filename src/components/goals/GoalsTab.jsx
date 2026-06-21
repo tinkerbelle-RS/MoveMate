@@ -6,15 +6,7 @@ import GoalSelector from './GoalSelector';
 import GoalFitChart from './GoalFitChart';
 
 export default function GoalsTab() {
-  const {
-    lease,
-    priorityGoals,
-    setPriorityGoals,
-    goalEvaluation,
-    saveGoalEvaluation,
-    setError,
-  } = useLease();
-
+  const { lease, priorityGoals, setPriorityGoals, goalEvaluation, saveGoalEvaluation, setError } = useLease();
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState(null);
 
@@ -32,15 +24,10 @@ export default function GoalsTab() {
       const res = await fetch('/api/evaluate-goals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          analysis: lease.analysis,
-          priorityGoals,
-        }),
+        body: JSON.stringify({ analysis: lease.analysis, priorityGoals }),
       });
-
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Evaluation failed');
-
       saveGoalEvaluation(data);
     } catch (err) {
       setLocalError(err.message);
@@ -50,47 +37,23 @@ export default function GoalsTab() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl border border-brand-100 bg-brand-50/50 p-5">
-        <h2 className="text-lg font-semibold text-slate-900">Lease fit for my life</h2>
-        <p className="mt-1 text-sm text-slate-600">
-          Students don&apos;t all want the same thing. MoveMate doesn&apos;t just read the lease;
-          it tells you how well this specific contract fits your goals.
-        </p>
+    <div className="space-y-5">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p className="eyebrow">Personalized fit</p>
+        <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Lease fit for my life</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">Students do not all need the same lease. Choose your priorities and MoveMate will score how well this contract supports your plans.</p>
       </div>
 
       <GoalSelector selected={priorityGoals} onChange={setPriorityGoals} />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <button
-          type="button"
-          className="btn-primary"
-          disabled={loading || priorityGoals.length < MIN_GOALS}
-          onClick={evaluate}
-        >
-          {loading ? (
-            <>
-              <Loader2 className="h-5 w-5 animate-spin-slow" />
-              Evaluating fit…
-            </>
-          ) : (
-            <>
-              <Sparkles className="h-5 w-5" />
-              See how this lease fits
-            </>
-          )}
+        <button type="button" className="btn-primary" disabled={loading || priorityGoals.length < MIN_GOALS} onClick={evaluate}>
+          {loading ? <><Loader2 className="h-5 w-5 animate-spin-slow" /> Evaluating fit</> : <><Sparkles className="h-5 w-5" /> See how this lease fits</>}
         </button>
-        {goalEvaluation && !loading && (
-          <p className="text-xs text-slate-500">Change goals above and re-run to update scores.</p>
-        )}
+        {goalEvaluation && !loading && <p className="text-sm text-slate-500">Change goals above and re-run to update scores.</p>}
       </div>
 
-      {localError && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {localError}
-        </div>
-      )}
-
+      {localError && <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{localError}</div>}
       {goalEvaluation && <GoalFitChart evaluation={goalEvaluation} priorityIds={priorityGoals} />}
     </div>
   );

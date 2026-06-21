@@ -1,3 +1,4 @@
+import { Check, Lock } from 'lucide-react';
 import { GOAL_OPTIONS, MIN_GOALS, MAX_GOALS } from '../../lib/goals';
 
 export default function GoalSelector({ selected, onChange }) {
@@ -12,47 +13,46 @@ export default function GoalSelector({ selected, onChange }) {
 
   return (
     <div className="card">
-      <h3 className="font-semibold text-slate-900">Your goals for this lease</h3>
-      <p className="mt-1 text-sm text-slate-600">
-        Pick {MIN_GOALS} to {MAX_GOALS} priorities. MoveMate scores how well this lease fits each one.
-      </p>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow">Priorities</p>
+          <h3 className="mt-1 text-lg font-semibold text-slate-950">Your goals for this lease</h3>
+          <p className="mt-1 text-sm text-slate-600">Pick {MIN_GOALS} to {MAX_GOALS} priorities. MoveMate scores fit across all dimensions.</p>
+        </div>
+        <span className="status-pill border-slate-200 bg-slate-50 text-slate-600">{selected.length}/{MAX_GOALS} selected</span>
+      </div>
 
-      <div className="mt-4 space-y-3">
+      <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
         {GOAL_OPTIONS.map((goal) => {
           const isSelected = selected.includes(goal.id);
           const disabled = !isSelected && selected.length >= MAX_GOALS;
-
           return (
-            <label
+            <button
               key={goal.id}
-              className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
+              type="button"
+              disabled={disabled}
+              onClick={() => toggle(goal.id)}
+              className={`min-h-[150px] rounded-xl border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-brand-100 ${
                 isSelected
-                  ? 'border-brand-300 bg-brand-50/60'
+                  ? 'border-brand-400 bg-gradient-to-br from-brand-600 to-accent-600 text-white shadow-md'
                   : disabled
-                    ? 'cursor-not-allowed border-slate-100 bg-slate-50 opacity-60'
-                    : 'border-slate-200 bg-white hover:border-brand-200'
+                    ? 'cursor-not-allowed border-slate-100 bg-slate-50 text-slate-400'
+                    : 'border-slate-200 bg-white text-slate-800 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md'
               }`}
             >
-              <input
-                type="checkbox"
-                checked={isSelected}
-                disabled={disabled}
-                onChange={() => toggle(goal.id)}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
-              />
-              <span>
-                <span className="block text-sm font-medium text-slate-900">{goal.label}</span>
-                <span className="mt-0.5 block text-xs text-slate-500">{goal.description}</span>
-              </span>
-            </label>
+              <div className="flex items-start justify-between gap-3">
+                <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${isSelected ? 'bg-white text-slate-950' : 'bg-slate-100 text-slate-500'}`}>
+                  {disabled ? <Lock className="h-4 w-4" /> : isSelected ? <Check className="h-4 w-4" /> : goal.label.charAt(0)}
+                </span>
+              </div>
+              <span className="mt-4 block text-sm font-semibold">{goal.label}</span>
+              <span className={`mt-2 block text-xs leading-relaxed ${isSelected ? 'text-white/80' : 'text-slate-500'}`}>{goal.description}</span>
+            </button>
           );
         })}
       </div>
 
-      <p className="mt-3 text-xs text-slate-500">
-        {selected.length}/{MAX_GOALS} selected
-        {selected.length < MIN_GOALS && ` · select at least ${MIN_GOALS} to evaluate`}
-      </p>
+      {selected.length < MIN_GOALS && <p className="mt-3 text-xs font-medium text-amber-700">Select at least {MIN_GOALS} goals to evaluate lease fit.</p>}
     </div>
   );
 }

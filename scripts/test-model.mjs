@@ -1,4 +1,5 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config({ override: true });
 import fetch from 'node-fetch';
 
 const key = (process.env.ANTHROPIC_API_KEY || '').trim();
