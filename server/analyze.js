@@ -71,6 +71,15 @@ export function getMockAnalysis() {
       'Landlord may inspect with 24 hours notice',
       'Renewal terms not specified. Ask landlord before lease end.',
     ],
+    renter_score: 665,
+    renter_rating_label: 'Fair',
+    renter_rating_summary:
+      'Strict notice and early-exit terms mean one misstep could hurt your record — but consistent on-time rent and documented move-out can still build solid history.',
+    renter_history_tips: [
+      'Pay rent by the 1st every month and save confirmation receipts for future applications.',
+      'Photo-document the unit at move-in and move-out to protect your deposit and reputation.',
+      'Give 60-day notice in writing and keep proof — future landlords may ask for reference checks.',
+    ],
   });
 }
 
@@ -114,7 +123,17 @@ export function normalizeAnalysis(raw = {}) {
     payments_and_fees: asStringArray(raw.payments_and_fees),
     rules_and_restrictions: asStringArray(raw.rules_and_restrictions),
     termination_and_renewal: asStringArray(raw.termination_and_renewal),
+    renter_score: raw.renter_score != null ? clampRenterScore(raw.renter_score) : null,
+    renter_rating_label: raw.renter_rating_label ?? null,
+    renter_rating_summary: raw.renter_rating_summary ?? null,
+    renter_history_tips: asStringArray(raw.renter_history_tips),
   };
+}
+
+function clampRenterScore(score) {
+  const n = Number(score);
+  if (Number.isNaN(n)) return null;
+  return Math.min(850, Math.max(300, Math.round(n)));
 }
 
 function parseModelJson(text) {

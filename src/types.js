@@ -32,6 +32,10 @@
  * @property {string[]} [payments_and_fees]
  * @property {string[]} [rules_and_restrictions]
  * @property {string[]} [termination_and_renewal]
+ * @property {number|null} [renter_score]
+ * @property {string|null} [renter_rating_label]
+ * @property {string|null} [renter_rating_summary]
+ * @property {string[]} [renter_history_tips]
  */
 
 /**

@@ -1,5 +1,6 @@
 import { formatCurrency, formatDate, isFieldUncertain, getUncertaintyReason } from '../lib/storage';
 import UncertainTooltip from './UncertainTooltip';
+import RenterRatingCard from './RenterRatingCard';
 import { AlertTriangle, ShieldCheck, AlertCircle } from 'lucide-react';
 
 const riskConfig = {
@@ -74,6 +75,8 @@ export default function AtAGlance({ analysis }) {
           analysis={analysis}
         />
       </div>
+
+      <RenterRatingCard analysis={analysis} />
 
       <div className={`rounded-2xl border p-5 ${risk.bg} ${risk.border}`}>
         <div className="flex items-start gap-3">

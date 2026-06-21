@@ -23,6 +23,10 @@ export const LEASE_SCHEMA = {
   payments_and_fees: 'array of plain-language bullet strings',
   rules_and_restrictions: 'array of plain-language bullet strings',
   termination_and_renewal: 'array of plain-language bullet strings',
+  renter_score: 'number 300-850, credit-score style estimate of how well a student can build positive renter history under this lease if they follow best practices',
+  renter_rating_label: 'Excellent | Very Good | Good | Fair | Needs Attention',
+  renter_rating_summary: 'one sentence on building renter history with this lease',
+  renter_history_tips: 'array of 2-4 short actionable tips tied to this lease for building renter history',
 };
 
 export const SYSTEM_PROMPT = `You are MoveMate, an AI assistant that helps students understand their housing leases.
@@ -35,6 +39,7 @@ Rules:
 - Set overall_risk_level to low, medium, or high based on unusual_or_high_risk_clauses and strict terms.
 - Generate practical checklists for move-in, during lease, and move-out based on the lease content.
 - Auto-fill specific dates in move-out tasks when lease dates are known (e.g., notice deadlines).
+- Estimate renter_score (300-850, like a credit score) based on how lease terms affect a student's ability to build positive renter history (on-time rent, deposit return, clean move-out, references). Higher scores mean the lease makes it easier to build a strong rental track record.
 - Return ONLY valid JSON matching the requested schema. No markdown, no extra text.`;
 
 export function buildUserPrompt(leaseText) {
